@@ -10,14 +10,14 @@ import java.util.List;
 
 public class Lox {
     static boolean hadError = false;
+
     public static void main(String[] args) throws IOException {
         if (args.length > 1) {
             System.out.println("Usage: jlox [script]");
             System.exit(64);
-        }
-        else if(args.length == 1 ) {
+        } else if (args.length == 1) {
             runFile(args[0]);
-        }else {
+        } else {
             runPrompt();
         }
     }
@@ -27,10 +27,11 @@ public class Lox {
         run(new String(bytes, Charset.defaultCharset()));
         if (hadError) System.exit(65);
     }
+
     private static void runPrompt() throws IOException {
         InputStreamReader input = new InputStreamReader(System.in);
-        BufferedReader reader  = new BufferedReader(input);
-        for (;;) {
+        BufferedReader reader = new BufferedReader(input);
+        for (; ; ) {
             System.out.println(">");
             String line = reader.readLine();
             if (line == null) break;
@@ -47,11 +48,11 @@ public class Lox {
         }
     }
 
-    static void error(int line, String message ) {
-        report(line,"", message);
+    static void error(int line, String message) {
+        report(line, "", message);
     }
 
-    private static void report(int line , String where, String message) {
+    private static void report(int line, String where, String message) {
         System.err.println("[line " + line + "] Error" + where + ": " + message);
         hadError = true;
     }
