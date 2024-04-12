@@ -72,7 +72,15 @@ public class Scanner {
             case '/':
                 if (match('/')) {
                     while (peek() != '\n' && !isAtEnd()) advance();
-                }else{
+                } else if (match('*')) {
+                    while (peek() != '*' && peekNext() != '/' && !isAtEnd()){
+                        if (peek() == '\n') line++;
+                        advance();
+                    }
+                    advance();
+                    advance();
+                }
+                else{
                     addToken(SLASH);
                 }
                 break;
