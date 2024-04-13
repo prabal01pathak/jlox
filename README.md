@@ -1,1 +1,1 @@
-Jlox is an interpreter written in java for lox language.
+Jlox is an interpreter written in java for jlox language.
