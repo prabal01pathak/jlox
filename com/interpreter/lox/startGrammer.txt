@@ -8,3 +8,38 @@ unary -> ( "-" | "!" ) expression ;
 binary -> expression operator expression ;
 operator -> "==" | "!=" | "<" | "<=" | ">" | ">="
                            | "+"  | "-"  | "*" | "/" ;
+
+
+
+# None lng
+expr → expr ( "(" ( expr ( "," expr )* )? ")" | "." IDENTIFIER )+
+     | IDENTIFIER
+     | NUMBER
+
+
+expr -> expr other_expr ;
+expr -> IDENTIFIER;
+expr -> NUMBER;
+
+other_expr -> other_expr;
+other_expr -> "." IDENTIFIER;
+s_other_expr -> "(" comma_expr ")";
+s_other_expr -> NULL;
+
+
+comma_expr -> ("," expr) comma_expr;
+
+expr → expr calls
+expr → IDENTIFIER
+expr → NUMBER
+
+calls → calls call
+calls → call
+
+call → "(" ")"
+call → "(" arguments ")"
+call → "." IDENTIFIER
+
+arguments → expr
+arguments → arguments "," expr
+
